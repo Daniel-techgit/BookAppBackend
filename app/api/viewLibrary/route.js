@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import connectMongo from "@/db/connectDb";
 import UserLibrary from "@/models/userLibrary";
 import jwt from "jsonwebtoken";
