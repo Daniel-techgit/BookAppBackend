@@ -1,8 +1,4 @@
 {
-    "version": 2,
-    "cors": {
-      "enabled": true
-    },
     "headers": [
       {
         "source": "/api/(.*)",
