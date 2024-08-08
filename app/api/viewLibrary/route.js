@@ -1,11 +1,11 @@
-export const dynamic = 'force-dynamic'
 import connectMongo from "@/db/connectDb";
 import UserLibrary from "@/models/userLibrary";
 import jwt from "jsonwebtoken";
+export const dynamic = 'force-dynamic'
 
-connectMongo();
 
 export async function GET(req) {
+  await connectMongo(); 
   try {
     // Verify the user's authentication token
     const token = req.headers.get('authorization')?.split(" ")[1];

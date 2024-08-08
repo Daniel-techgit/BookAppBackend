@@ -13,5 +13,5 @@ const bookSchema = new mongoose.Schema({
 });
 
 const Book = mongoose.models.Book || mongoose.model('Book', bookSchema);
-
+console.log("Book model loaded:", Book);
 export default Book;
