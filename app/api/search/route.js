@@ -21,6 +21,10 @@ export async function GET(req) {
       ],
     });
 
+    if (books.length === 0) {
+      return NextResponse.json({ message: "No books found" }, { status: 404 });
+    }
+
     return NextResponse.json([books], { status: 200 });
   } catch (err) {
     return NextResponse.json({ message: err.message }, { status: 500 });
