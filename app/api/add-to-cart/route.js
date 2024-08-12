@@ -1,5 +1,6 @@
 import connectMongo from "@/db/connectDb";
 import UserCart from "@/models/userCart";
+import UserLibrary from "@/models/userLibrary";
 import jwt from "jsonwebtoken";
 
 connectMongo();
@@ -18,6 +19,15 @@ export async function POST(req) {
 
     // Get the bookId from the request body
     const { bookId } = await req.json();
+
+    // Check if the book is already in the user's library
+    const userLibrary = await UserLibrary.findOne({ userId });
+    if (userLibrary) {
+      const bookExists = userLibrary.books.some((book) => book.bookId.toString() === bookId);
+      if (bookExists) {
+        return new Response(JSON.stringify({ error: 'Book already in library' }), { status: 400 });
+      }
+    }
 
     // Check if the user's Cart exists
     let userCart = await UserCart.findOne({ userId });
